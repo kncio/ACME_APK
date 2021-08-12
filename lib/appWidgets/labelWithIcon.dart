@@ -6,11 +6,15 @@ class LabelWithTrailingIcon extends StatelessWidget {
   final IconData iconData;
   final labelString;
 
-  const LabelWithTrailingIcon({Key key, this.iconData, this.labelString})
+  LabelWithTrailingIcon({Key key, this.iconData, this.labelString})
       : super(key: key);
+
+  double _fontSize = 24;
 
   @override
   Widget build(BuildContext context) {
+    var mqH = MediaQuery.of(context).size.height / 24;
+    _fontSize = (mqH < 24) ? mqH.abs() : 24;
     return Row(children: [
       Icon(
         iconData,
@@ -19,8 +23,8 @@ class LabelWithTrailingIcon extends StatelessWidget {
       ),
       Text(
         labelString,
-        style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-            .copyWith(fontWeight: FontWeight.w600, color: Colors.grey,fontSize: 22),
+        style: AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+            fontWeight: FontWeight.w600, color: Colors.grey, fontSize: _fontSize),
       )
     ]);
   }

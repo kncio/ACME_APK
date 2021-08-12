@@ -1,5 +1,6 @@
 import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/AppBarIcon.dart';
+import 'package:acme_test/appWidgets/mapWidget.dart';
 import 'package:acme_test/appWidgets/workTicketFooter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,36 +16,30 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      bottomNavigationBar: IntrinsicHeight(child: WorkTicketFooter()),
-      body: Row(
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.red,
-              width: MediaQuery.of(context).size.width / 3,
-            ),
-          ),
-          Container(
-            color: Colors.blue,
-            width: MediaQuery.of(context).size.width * 2 / 3,
-          )
-        ],
-      ),
-    );
+        extendBodyBehindAppBar: true,
+        appBar: buildAppBar(),
+        bottomNavigationBar: IntrinsicHeight(child: WorkTicketFooter()),
+        body: Row(
+          children: [
+            Container(
+                width: MediaQuery.of(context).size.width * 3 / 4,
+                child: GMap()),
+          ],
+        ));
   }
 
-  PreferredSize buildAppBar() {
+  Widget buildAppBar() {
     return PreferredSize(
-        child: AppBar(
-          elevation: 1,
-          leadingWidth: MediaQuery.of(context).size.width / 5,
-          leading: _buildLeading(),
-          centerTitle: true,
-          backgroundColor: Colors.white70,
-          title: _buildTitle(),
-        ),
-        preferredSize: Size.fromHeight(getPreferedSize()));
+      preferredSize: Size.fromHeight(getPreferedSize()),
+      child: AppBar(
+        elevation: 1,
+        leadingWidth: MediaQuery.of(context).size.width / 5,
+        leading: _buildLeading(),
+        centerTitle: true,
+        backgroundColor: Colors.grey[300],
+        title: _buildTitle(),
+      ),
+    );
   }
 
   Container _buildLeading() => Container(
@@ -64,18 +59,18 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
 
   ///Return the min between screenHeightSize/6 and 75
   double getPreferedSize() {
-    return (MediaQuery.of(context).size.height / 6 > 75)
-        ? 75
+    return (MediaQuery.of(context).size.height / 6 > 70)
+        ? 70
         : MediaQuery.of(context).size.height / 6;
   }
 
   Widget _buildTitle() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 32, 0, 16),
+      padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
       child: Text(
         "Get Directions",
         style: AcmeAppTheme.themeDataLight.textTheme.headline2
-            .copyWith(color: Colors.grey, fontSize: 24),
+            .copyWith(fontSize: 24),
       ),
     );
   }

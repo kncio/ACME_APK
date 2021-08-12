@@ -8,12 +8,16 @@ class AddressInfoWidget extends StatelessWidget {
   final String locationAddr;
   final String codeAddr;
 
-  const AddressInfoWidget(
+  AddressInfoWidget(
       {Key key, this.streetAddr, this.locationAddr, this.codeAddr})
       : super(key: key);
 
+  double _fontSize = 24;
+
   @override
   Widget build(BuildContext context) {
+    var mqH = MediaQuery.of(context).size.height / 24;
+    _fontSize = (mqH < 24) ? mqH.abs() : 24;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,7 +26,7 @@ class AddressInfoWidget extends StatelessWidget {
           child: Text(
             "$streetAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(color: Colors.black54, fontSize: 24),
+                .copyWith(color: Colors.black54, fontSize: _fontSize),
           ),
         ),
         Padding(
@@ -30,15 +34,15 @@ class AddressInfoWidget extends StatelessWidget {
           child: Text(
             "$locationAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(color: Colors.black54, fontSize: 24),
+                .copyWith(color: Colors.black54, fontSize: _fontSize),
           ),
         ),
         Padding(
-          padding:  paddingBetwenLines,
+          padding: paddingBetwenLines,
           child: Text(
             "$codeAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(color: Colors.black54, fontSize: 24),
+                .copyWith(color: Colors.black54, fontSize: _fontSize),
           ),
         ),
       ],

@@ -11,7 +11,6 @@ class WorkTicketFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
-    log(mqH.toString());
     _fontSize = (mqH < 24) ? mqH.abs() : 24;
     return Container(
       width: MediaQuery.of(context).size.width,

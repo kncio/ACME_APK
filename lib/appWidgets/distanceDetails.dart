@@ -8,13 +8,16 @@ class DistanceDetailsWidget extends StatelessWidget {
   final String time;
   final String miles;
 
-  const DistanceDetailsWidget({Key key, this.time, this.miles})
+  DistanceDetailsWidget({Key key, this.time, this.miles})
       : super(key: key);
 
+  double _fontSize = 24;
   @override
   Widget build(BuildContext context) {
+    var mqH = MediaQuery.of(context).size.height / 24;
+    _fontSize = (mqH < 24) ? mqH.abs() : 24;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,19 +26,19 @@ class DistanceDetailsWidget extends StatelessWidget {
             labelString: distanceLabelString,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+            padding: const EdgeInsets.fromLTRB(8, 4, 0, 4),
             child: Text(
               "$time",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(color: Colors.black54, fontSize: 24),
+                  .copyWith(color: Colors.black54, fontSize: _fontSize),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+            padding: const EdgeInsets.fromLTRB(8, 4, 4, 4),
             child: Text(
               "$miles",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(color: Colors.black54, fontSize: 22),
+                  .copyWith(color: Colors.black54, fontSize: _fontSize),
             ),
           ),
         ],
