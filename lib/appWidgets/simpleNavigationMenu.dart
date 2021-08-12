@@ -53,13 +53,14 @@ class SimpleMenu extends StatelessWidget {
       onSelected: (value) {
         switch (value) {
           case 0:
-            return Navigator.of(context).pushNamed(DASHBOARD_PAGE);
+            return Navigator.of(context).pushNamedAndRemoveUntil(
+                DASHBOARD_PAGE, ModalRoute.withName("/"));
           case 1:
             return Navigator.of(context)
                 .pushNamed(WORK_TICKET_PAGE, arguments: null);
           default:
             return Navigator.of(context)
-                .pushNamed(GET_DIRECTIONS_PAGE, arguments: null);
+                .pushNamed(GET_DIRECTIONS_PAGE);
         }
       },
     );

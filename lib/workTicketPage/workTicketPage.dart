@@ -6,6 +6,7 @@ import 'package:acme_test/appWidgets/dispatchNoteWidget.dart';
 import 'package:acme_test/appWidgets/distanceDetails.dart';
 import 'package:acme_test/appWidgets/labelWithIcon.dart';
 import 'package:acme_test/appWidgets/roundedButton.dart';
+import 'package:acme_test/appWidgets/simpleNavigationMenu.dart';
 import 'package:acme_test/appWidgets/workTicketFooter.dart';
 import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:acme_test/commons/stringsValues.dart';
@@ -39,6 +40,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
         builder: (context, state) {
           return Scaffold(
             appBar: buildAppBar(),
+            bottomNavigationBar: IntrinsicHeight(child: WorkTicketFooter(),),
             body: _buildBody(),
           );
         });
@@ -94,7 +96,6 @@ class _WorkTicketPage extends State<WorkTicketPage> {
             color: Colors.grey,
           ),
           _buildReasonForCallDetails(),
-          WorkTicketFooter()
         ],
       ),
     );
@@ -285,11 +286,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
 
   List<Widget> _buildActions() {
     return [
-      AppActionBtn(
-        subtitle: "Menu",
-        onTap: () {},
-        iconData: Icons.menu,
-      ),
+      SimpleMenu(currentPosition: 1,)
     ];
   }
 

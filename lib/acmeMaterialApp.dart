@@ -3,6 +3,8 @@ import 'package:acme_test/commons/pagesRoutes.dart';
 import 'package:acme_test/commons/routesNames.dart';
 import 'package:acme_test/dashboardPage/dashboardCubit.dart';
 import 'package:acme_test/dashboardPage/dashboardPage.dart';
+import 'package:acme_test/getDirectionsPage/getDirectionsCubit.dart';
+import 'package:acme_test/getDirectionsPage/getDirectionsPage.dart';
 import 'package:acme_test/loginPage/loginCubit.dart';
 import 'package:acme_test/loginPage/loginPage.dart';
 import 'package:acme_test/settings/settings.dart';
@@ -42,7 +44,15 @@ class ACMEApp extends StatelessWidget {
             return AcmePageRoute(
                 builder: (_) => BlocProvider<WorkTicketPageCubit>(
                     create: (_) => injectorContainer.sl<WorkTicketPageCubit>(),
-                    child: WorkTicketPage(ticketId: settings.arguments,)));
+                    child: WorkTicketPage(
+                      ticketId: settings.arguments,
+                    )));
+          case GET_DIRECTIONS_PAGE:
+            return AcmePageRoute(
+                builder: (_) => BlocProvider<GetDirectionsPageCubit>(
+                    create: (_) =>
+                        injectorContainer.sl<GetDirectionsPageCubit>(),
+                    child: GetDirectionsPage()));
           default:
             return AcmePageRoute(
                 builder: (_) => BlocProvider<SplashScreenCubit>(

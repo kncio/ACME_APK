@@ -14,7 +14,24 @@ class GetDirectionsPage extends StatefulWidget {
 class _GetDirectionsPage extends State<GetDirectionsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: buildAppBar(),bottomNavigationBar: WorkTicketFooter(),);
+    return Scaffold(
+      appBar: buildAppBar(),
+      bottomNavigationBar: IntrinsicHeight(child: WorkTicketFooter()),
+      body: Row(
+        children: [
+          Expanded(
+            child: Container(
+              color: Colors.red,
+              width: MediaQuery.of(context).size.width / 3,
+            ),
+          ),
+          Container(
+            color: Colors.blue,
+            width: MediaQuery.of(context).size.width * 2 / 3,
+          )
+        ],
+      ),
+    );
   }
 
   PreferredSize buildAppBar() {
@@ -56,7 +73,7 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 32, 0, 16),
       child: Text(
-        "Work Ticket",
+        "Get Directions",
         style: AcmeAppTheme.themeDataLight.textTheme.headline2
             .copyWith(color: Colors.grey, fontSize: 24),
       ),

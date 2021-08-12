@@ -1,6 +1,8 @@
 import 'package:acme_test/dashboardPage/dashboardCubit.dart';
 import 'package:acme_test/dashboardPage/dashboardRepository.dart';
 import 'package:acme_test/dbApi/dbApi.dart';
+import 'package:acme_test/getDirectionsPage/getDirectionsCubit.dart';
+import 'package:acme_test/getDirectionsPage/getDirectionsRepository.dart';
 import 'package:acme_test/loginPage/loginCubit.dart';
 import 'package:acme_test/loginPage/loginRepository.dart';
 import 'package:acme_test/splashScreenPage/splashScreenCubit.dart';
@@ -39,10 +41,16 @@ Future<void> init() async {
   sl.registerFactory(() => DashboardPageRepository(database: sl()));
   //endregion
 
-  //region Dashboard
+  //region WorkTicket
   sl.registerFactory(() => WorkTicketPageCubit(repository: sl()));
 
   sl.registerFactory(() => WorkTicketRepository());
+  //endregion
+
+  //region GetDirections
+  sl.registerFactory(() => GetDirectionsPageCubit(repository: sl()));
+
+  sl.registerFactory(() => GetDirectionsPageRepository());
   //endregion
 
   var database = openDatabase(

@@ -31,7 +31,6 @@ class DBApi {
   Future<void> insertTicket(WorkTicketModel ticket) async {
     // Get a reference to the database.
     final db = await database;
-
     // Insert the Dog into the correct table. You might also specify the
     // `conflictAlgorithm` to use in case the same dog is inserted twice.
     //
