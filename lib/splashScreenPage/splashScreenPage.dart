@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:acme_test/commons/routesNames.dart';
 import 'package:acme_test/settings/settings.dart';
 import 'package:acme_test/splashScreenPage/logoImageWidget.dart';
 import 'package:acme_test/splashScreenPage/splashScreenCubit.dart';
@@ -32,12 +33,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       if (state is SplashScreenAppInitializedSuccess) {
         Future.delayed(Duration(seconds: 3, milliseconds: 500)).whenComplete(
           () {
-            //Navigator.of(context).pushReplacementNamed(HOME_PAGE_ROUTE);
+            Navigator.of(context).pushReplacementNamed(LOGIN_PAGE);
           },
         );
       } else if (state is SplashScreenError) {
       } else if (state is SplashScreenAnimationStartState) {
-        log("triggered");
         setState(() {
           this.logoWidth = MediaQuery.of(context).size.width * 3 / 4;
         });
