@@ -120,6 +120,19 @@ class _LoginPage extends State<LoginPage> {
                   },
                 ),
               ),
+              Container(
+                padding: EdgeInsets.fromLTRB(0, 4, 0, 16),
+                width: MediaQuery.of(context).size.width / 3 + 50,
+                child: Row(
+                  children: [
+                    Spacer(),
+                    Text(
+                      "Forgot?",
+                      style: AcmeAppTheme.themeDataLight.textTheme.subtitle2,
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
