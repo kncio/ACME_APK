@@ -14,26 +14,26 @@ class WorkTicketFooter extends StatelessWidget {
             label: Text(
               "Overvew",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(color: Colors.green),
+                  .copyWith(color: Colors.green,fontSize: 24),
             ),
             selected: true,
           ),
           FooterButton(
-            label: Text("Work Details"),
+            label: Text("Work Details",style: TextStyle(fontSize: 24),),
             selected: false,
           ),
           FooterButton(
-            label: Text("Purchasing"),
+            label: Text("Purchasing",style: TextStyle(fontSize: 24),),
             selected: false,
           ),
           FooterButton(
-            label: Text("Finishing Up"),
+            label: Text("Finishing Up",style: TextStyle(fontSize: 24),),
             selected: false,
           ),
           FooterButton(
             label: Icon(
               Icons.camera_alt_rounded,
-              size: 19,
+              size: 28,
               color: Colors.grey,
             ),
             selected: false,

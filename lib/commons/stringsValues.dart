@@ -15,4 +15,4 @@ const String jobSiteAddressLabelString = "Job Site Address:";
 const String distanceLabelString = "Distance";
 const String dispatchNoteLabelString = "Dispach Note";
 const String text1String =
-    "\$89 Diagnostic Fee \nAir Handler Horizontal in the Atic, Condenser in back yard Unit turns on and blows warm air.\nProblem started at 2 days ago and have never had an issue with unit.";
+    "\$89 Diagnostic Fee \n\nAir Handler Horizontal in the Atic, Condenser in back yard Unit turns on and blows warm air.\n\nProblem started at 2 days ago and have never had an issue with unit.";

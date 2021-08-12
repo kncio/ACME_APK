@@ -20,7 +20,7 @@ class LabelWithTrailingIcon extends StatelessWidget {
       Text(
         labelString,
         style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-            .copyWith(fontWeight: FontWeight.w600, color: Colors.grey),
+            .copyWith(fontWeight: FontWeight.w600, color: Colors.grey,fontSize: 22),
       )
     ]);
   }

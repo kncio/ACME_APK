@@ -12,3 +12,6 @@ EdgeInsets.all(18);
 
 const EdgeInsetsGeometry defaultWorkTicketTextPadding =
 EdgeInsets.all(20);
+
+const EdgeInsetsGeometry paddingBetwenLines =
+EdgeInsets.fromLTRB(0,4,0,4);

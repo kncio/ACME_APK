@@ -15,6 +15,7 @@ class DispatchNoteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: defaultWorkTicketTextPadding,
+      height: MediaQuery.of(context).size.height / 3 + 10,
       width: MediaQuery.of(context).size.width / 2 - 10,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,9 +33,10 @@ class DispatchNoteWidget extends StatelessWidget {
                 .copyWith(fontSize: 20),
             maxLines: 10,
           ),
+          Spacer(),
           Divider(
             color: Colors.black38,
-          )
+          ),
         ],
       ),
     );

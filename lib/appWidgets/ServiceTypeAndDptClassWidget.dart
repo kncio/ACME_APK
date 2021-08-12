@@ -10,20 +10,21 @@ class ServiceTypeAndDptClassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          LabelWithTrailingIcon(
-            labelString: "Reason for Call: ",
-          ),
-          Text(dptClass),
-          LabelWithTrailingIcon(
-            labelString: "Service Type: ",
-          ),
-          Text(serviceType),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LabelWithTrailingIcon(
+          labelString: "Reason for Call: ",
+        ),
+        Text(dptClass, style: TextStyle(fontSize: 24)),
+        LabelWithTrailingIcon(
+          labelString: "Service Type: ",
+        ),
+        Text(
+          serviceType,
+          style: TextStyle(fontSize: 24),
+        ),
+      ],
     );
   }
 }

@@ -23,19 +23,19 @@ class DistanceDetailsWidget extends StatelessWidget {
             labelString: distanceLabelString,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
             child: Text(
               "$time",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(color: Colors.black54, fontSize: 18),
+                  .copyWith(color: Colors.black54, fontSize: 24),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+            padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
             child: Text(
               "$miles",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(color: Colors.black54, fontSize: 18),
+                  .copyWith(color: Colors.black54, fontSize: 22),
             ),
           ),
         ],

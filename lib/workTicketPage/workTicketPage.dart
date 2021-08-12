@@ -11,6 +11,7 @@ import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:acme_test/commons/stringsValues.dart';
 import 'package:acme_test/workTicketPage/workTicketCubit.dart';
 import 'package:acme_test/workTicketPage/workTicketState.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,38 +49,45 @@ class _WorkTicketPage extends State<WorkTicketPage> {
       scrollDirection: Axis.vertical,
       child: Column(
         children: [
-          Row(
-            children: [
-              _buildCustomerInfoWidget(),
-              Spacer(),
-              _buildScheduledInfoWidget()
-            ],
-          ),
-          Divider(
-            indent: 12,
-            endIndent: 12,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _directionsInfoWidget(),
-              Container(
-                height: 250,
-                width: 1,
-                color: Colors.black12,
-              ),
-              Column(
-                children: [
-                  DispatchNoteWidget(
-                    noteText: "$text1String",
-                  ),
-                  ServiceTypeAndDptClassWidget(
-                    dptClass: "Plumping",
-                    serviceType: "Call Back",
-                  )
-                ],
-              )
-            ],
+          Container(
+            height: MediaQuery.of(context).size.height * 4 / 7,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    _buildCustomerInfoWidget(),
+                    Spacer(),
+                    _buildScheduledInfoWidget()
+                  ],
+                ),
+                Divider(
+                  indent: 12,
+                  endIndent: 12,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _directionsInfoWidget(),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 3 / 7 - 15,
+                      width: 1,
+                      color: Colors.black12,
+                    ),
+                    Column(
+                      children: [
+                        DispatchNoteWidget(
+                          noteText: "$text1String",
+                        ),
+                        ServiceTypeAndDptClassWidget(
+                          dptClass: "Plumping",
+                          serviceType: "Call Back",
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
           Container(
             height: MediaQuery.of(context).size.height / 16,
@@ -95,58 +103,49 @@ class _WorkTicketPage extends State<WorkTicketPage> {
   //TODO: to implement dynamic data fill
   Widget _buildReasonForCallDetails() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 8, 0, 10),
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Reason For Call:",
-              style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                  .copyWith(fontWeight: FontWeight.w600, color: Colors.grey),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                        "- Customer has noticed extremely low water pressure from the sink.",
-                        style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                            .copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    Text("- Precision tune up.",
-                        style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                            .copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                        )),
-                    Text("- Estimate for panel upgrade.",
-                        style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                            .copyWith(
-                                fontSize: 14, fontWeight: FontWeight.w600))
-                  ]),
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("Ticket #32787",
-                      textAlign: TextAlign.start,
-                      style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                          .copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey))
-                ],
-              ),
-            )
-          ],
-        ),
+      padding: const EdgeInsets.fromLTRB(24, 16, 0, 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Reason For Call:",
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+                fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 20),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(
+                  "- Customer has noticed extremely low water pressure from the sink.",
+                  style:
+                      AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  )),
+              Text("- Precision tune up.",
+                  style:
+                      AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  )),
+              AutoSizeText("- Estimate for panel upgrade.",
+                  style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
+                      .copyWith(fontSize: 20, fontWeight: FontWeight.w600))
+            ]),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
+            child: Text("Ticket #32787",
+                textAlign: TextAlign.start,
+                style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
+                    .copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey)),
+          )
+        ],
       ),
     );
   }
@@ -167,9 +166,12 @@ class _WorkTicketPage extends State<WorkTicketPage> {
                   labelString: jobSiteAddressLabelString,
                 ),
                 _addressInfoWidget(),
-                DistanceDetailsWidget(
-                  time: "Approx. 17 Minutes",
-                  miles: "11.9 miles",
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 18, 0, 0),
+                  child: DistanceDetailsWidget(
+                    time: "Approx. 17 Minutes",
+                    miles: "11.9 miles",
+                  ),
                 )
               ],
             ),
@@ -201,15 +203,15 @@ class _WorkTicketPage extends State<WorkTicketPage> {
         children: [
           Text(
             customerInfoLabelString,
-            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(fontWeight: FontWeight.w600, color: Colors.grey),
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+                fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 22),
           ),
           Row(
             children: [
               Text(
                 "Jessica Green",
                 style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                    .copyWith(color: Colors.black54, fontSize: 18),
+                    .copyWith(color: Colors.black54, fontSize: 24),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
@@ -222,7 +224,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
               Text(
                 "519 733 8787",
                 style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                    .copyWith(fontSize: 14),
+                    .copyWith(fontSize: 24),
               ),
             ],
           )
@@ -239,13 +241,13 @@ class _WorkTicketPage extends State<WorkTicketPage> {
         children: [
           Text(
             scheduledForLabelString,
-            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(fontWeight: FontWeight.w600, color: Colors.grey),
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
+                fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 22),
           ),
           Text(
             "Saturday, Dec 24, 2016 11:54 AM",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-                .copyWith(fontSize: 18),
+                .copyWith(fontSize: 24),
           )
         ],
       ),
@@ -300,11 +302,11 @@ class _WorkTicketPage extends State<WorkTicketPage> {
 
   Widget _buildTitle() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 24, 0, 16),
+      padding: const EdgeInsets.fromLTRB(0, 32, 0, 16),
       child: Text(
         "Work Ticket",
         style: AcmeAppTheme.themeDataLight.textTheme.headline2
-            .copyWith(color: Colors.grey),
+            .copyWith(color: Colors.grey,fontSize: 24),
       ),
     );
   }

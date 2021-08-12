@@ -1,4 +1,5 @@
 import 'package:acme_test/appTheme/acmeTheme.dart';
+import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,20 +17,29 @@ class AddressInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "$streetAddr",
-          style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-              .copyWith(color: Colors.black54, fontSize: 18),
+        Padding(
+          padding: paddingBetwenLines,
+          child: Text(
+            "$streetAddr",
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
+                .copyWith(color: Colors.black54, fontSize: 24),
+          ),
         ),
-        Text(
-          "$locationAddr",
-          style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-              .copyWith(color: Colors.black54, fontSize: 18),
+        Padding(
+          padding: paddingBetwenLines,
+          child: Text(
+            "$locationAddr",
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
+                .copyWith(color: Colors.black54, fontSize: 24),
+          ),
         ),
-        Text(
-          "$codeAddr",
-          style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
-              .copyWith(color: Colors.black54, fontSize: 18),
+        Padding(
+          padding:  paddingBetwenLines,
+          child: Text(
+            "$codeAddr",
+            style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
+                .copyWith(color: Colors.black54, fontSize: 24),
+          ),
         ),
       ],
     );

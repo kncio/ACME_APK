@@ -22,7 +22,7 @@ class FooterButton extends StatelessWidget {
                 color: (selected) ? Colors.green : Colors.grey,
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(24.0),
                 child: Center(
                   child: label
                 ),
