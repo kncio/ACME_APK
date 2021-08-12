@@ -13,16 +13,18 @@ class AddressInfoWidget extends StatelessWidget {
       : super(key: key);
 
   double _fontSize = 24;
+  bool _smallScreen = false;
 
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
-    _fontSize = (mqH < 24) ? mqH.abs() : 24;
+    _fontSize = (mqH < 24) ? mqH.abs() * 2 / 3 : 24;
+    _smallScreen = (mqH < 24);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: paddingBetwenLines,
+          padding: (_smallScreen) ? EdgeInsets.all(1) : paddingBetwenLines,
           child: Text(
             "$streetAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
@@ -30,7 +32,7 @@ class AddressInfoWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: paddingBetwenLines,
+          padding: (_smallScreen) ? EdgeInsets.all(1) : paddingBetwenLines,
           child: Text(
             "$locationAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
@@ -38,7 +40,7 @@ class AddressInfoWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: paddingBetwenLines,
+          padding: (_smallScreen) ? EdgeInsets.all(1) : paddingBetwenLines,
           child: Text(
             "$codeAddr",
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2

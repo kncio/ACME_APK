@@ -14,7 +14,7 @@ class LabelWithTrailingIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
-    _fontSize = (mqH < 24) ? mqH.abs() : 24;
+    _fontSize = (mqH < 24) ? mqH.abs()*3/4 : 24;
     return Row(children: [
       Icon(
         iconData,

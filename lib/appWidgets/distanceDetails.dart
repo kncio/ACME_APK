@@ -15,7 +15,7 @@ class DistanceDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
-    _fontSize = (mqH < 24) ? mqH.abs() : 24;
+    _fontSize = (mqH < 24) ? mqH.abs()*2/3 : 24;
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       child: Column(

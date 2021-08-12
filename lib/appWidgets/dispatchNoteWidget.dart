@@ -13,13 +13,14 @@ class DispatchNoteWidget extends StatelessWidget {
   DispatchNoteWidget({Key key, this.noteText}) : super(key: key);
 
   double _fontSize = 24;
-
+  bool _smallScreen = false;
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
-    _fontSize = (mqH < 24) ? mqH.abs() : 24;
+    _fontSize = (mqH < 24) ? mqH.abs()*2/3 : 24;
+    _smallScreen = (mqH < 24);
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      padding: (_smallScreen)?EdgeInsets.fromLTRB(0, 8, 0, 0):EdgeInsets.fromLTRB(0, 20, 0, 0),
       height: MediaQuery.of(context).size.height * 2 / 5,
       width: MediaQuery.of(context).size.width / 2 - 1,
       child: Column(
@@ -38,7 +39,7 @@ class DispatchNoteWidget extends StatelessWidget {
               noteText,
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
                   .copyWith(fontSize: _fontSize),
-              maxLines: 10,
+              maxLines: 10,overflow: TextOverflow.clip,
             ),
           ),
           Spacer(),

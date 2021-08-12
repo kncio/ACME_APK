@@ -34,11 +34,13 @@ class _WorkTicketPage extends State<WorkTicketPage> {
   _WorkTicketPage({this.ticketId});
 
   double _fontSize = 24;
+  bool _smallScreen = false;
 
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
     _fontSize = (mqH < 24) ? mqH.abs() : 24;
+    _smallScreen = (mqH < 24);
     return BlocConsumer<WorkTicketPageCubit, WorkTicketPageState>(
         listener: (context, state) async {},
         builder: (context, state) {
@@ -74,7 +76,8 @@ class _WorkTicketPage extends State<WorkTicketPage> {
               children: [
                 _directionsInfoWidget(),
                 Container(
-                  height: MediaQuery.of(context).size.height * 2 / 5 + _fontSize *1.5,
+                  height: MediaQuery.of(context).size.height * 2 / 5 +
+                      _fontSize * 1.5,
                   width: 1,
                   color: Colors.black12,
                 ),
@@ -162,7 +165,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
       height: MediaQuery.of(context).size.height * 2 / 5,
       width: MediaQuery.of(context).size.width / 2 - 1,
       child: Padding(
-        padding: defaultWorkTicketTextPadding,
+        padding: (_smallScreen)?defaultSmallWorkTicketTextPadding:defaultWorkTicketTextPadding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -196,7 +199,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
   Widget _addressInfoWidget() {
     //TODO: address info must be getted from dynamic data
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8,0,8,0),
+      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
       child: AddressInfoWidget(
         streetAddr: "27 Brookview Dr",
         locationAddr: "North York, ON",
