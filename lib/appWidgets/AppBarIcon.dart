@@ -8,7 +8,10 @@ class AppActionBtn extends StatelessWidget {
   final IconData iconData;
 
   AppActionBtn({
-    Key key, this.subtitle, this.onTap, this.iconData,
+    Key key,
+    this.subtitle,
+    this.onTap,
+    this.iconData,
   }) : super(key: key);
 
   @override

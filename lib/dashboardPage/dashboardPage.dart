@@ -4,6 +4,7 @@ import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/AppBarIcon.dart';
 import 'package:acme_test/appWidgets/DashboardTicketListTile.dart';
 import 'package:acme_test/appWidgets/appToolbarDateIndicator.dart';
+import 'package:acme_test/appWidgets/simpleNavigationMenu.dart';
 import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:acme_test/commons/routesNames.dart';
 import 'package:acme_test/dashboardPage/dashBoardState.dart';
@@ -123,11 +124,7 @@ class _DashboardPage extends State<DashboardPage> {
         onTap: () {},
         iconData: Icons.add,
       ),
-      AppActionBtn(
-        subtitle: "Menu",
-        onTap: () {},
-        iconData: Icons.menu,
-      ),
+      SimpleMenu(currentPosition: 0,)
     ];
   }
 
