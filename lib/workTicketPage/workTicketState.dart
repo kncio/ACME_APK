@@ -1,3 +1,4 @@
+import 'package:acme_test/models/WorkTicketModel.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class WorkTicketPageState extends Equatable {
@@ -13,4 +14,11 @@ class WorkTicketPageErrorState extends WorkTicketPageState {
   WorkTicketPageErrorState(this.message);
 }
 
-class WorkTicketPageSuccessState extends WorkTicketPageState {}
+class WorkTicketPageSuccessState extends WorkTicketPageState {
+  final WorkTicketModel model;
+
+  WorkTicketPageSuccessState(this.model);
+
+}
+
+class WorkTicketPageLoadingState extends WorkTicketPageState {}

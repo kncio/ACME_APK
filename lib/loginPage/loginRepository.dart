@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 class LoginPageRepository {
   Future<Either<Failure, bool>> login(LoginData loginData) async {
     try {
-      ///TODO: implement login cubit logic
+      ///TODO: implement login repository logic send data to the server...
       return Right(true);
     } on Exception catch (error) {
       return Left(Failure([error.toString()]));

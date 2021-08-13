@@ -21,3 +21,7 @@ class DashboardPageSuccessState extends DashboardPageState {
 }
 
 class DashboardPageLoadingState extends DashboardPageState {}
+
+class DashboardPageCreateState extends DashboardPageState {
+
+}

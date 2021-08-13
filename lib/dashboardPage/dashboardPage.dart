@@ -4,6 +4,7 @@ import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/AppBarIcon.dart';
 import 'package:acme_test/appWidgets/DashboardTicketListTile.dart';
 import 'package:acme_test/appWidgets/appToolbarDateIndicator.dart';
+import 'package:acme_test/appWidgets/newTicketForm.dart';
 import 'package:acme_test/appWidgets/simpleNavigationMenu.dart';
 import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:acme_test/commons/routesNames.dart';
@@ -24,6 +25,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPage extends State<DashboardPage> {
   @override
   void initState() {
+    ///Send to the Cubit the get tickets even to retrieve the database data
     context.read<DashboardPageCubit>().getTickets();
     super.initState();
   }
@@ -36,6 +38,9 @@ class _DashboardPage extends State<DashboardPage> {
     );
   }
 
+  ///Build the UI for the current state
+  ///IF success tickets list its show
+  ///else error or loading indicator its show
   Widget _buildDashboardBody() {
     return BlocConsumer<DashboardPageCubit, DashboardPageState>(
         builder: (context, state) {
@@ -72,6 +77,10 @@ class _DashboardPage extends State<DashboardPage> {
                   ],
                 ),
               );
+            case DashboardPageCreateState:
+              return SingleChildScrollView(child: NewTicketForm());
+            case DashboardPageErrorState:
+              return Center(child: Text((state as DashboardPageErrorState).message));
             default:
               return Column(
                 children: [
@@ -89,6 +98,7 @@ class _DashboardPage extends State<DashboardPage> {
   PreferredSize buildAppBar() {
     return PreferredSize(
         child: AppBar(
+          elevation: 0.2,
           leadingWidth: MediaQuery.of(context).size.width / 5,
           leading: _buildLeading(),
           centerTitle: true,
@@ -121,10 +131,14 @@ class _DashboardPage extends State<DashboardPage> {
     return [
       AppActionBtn(
         subtitle: "New Ticket",
-        onTap: () {},
+        onTap: () {
+          context.read<DashboardPageCubit>().startCreateForm();
+        },
         iconData: Icons.add,
       ),
-      SimpleMenu(currentPosition: 0,)
+      SimpleMenu(
+        currentPosition: 0,
+      )
     ];
   }
 

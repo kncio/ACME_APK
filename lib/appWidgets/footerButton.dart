@@ -16,7 +16,6 @@ class FooterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 35;
-    log(mqH.toString());
     _padding = (mqH < 24) ? mqH.abs() : 24;
     return Expanded(
       child: Padding(

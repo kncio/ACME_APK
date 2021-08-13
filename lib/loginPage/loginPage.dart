@@ -30,7 +30,9 @@ class _LoginPage extends State<LoginPage> {
       listener: (context, state) async {
         if (state is LoginPageSuccessState) {
           Navigator.of(context).pushNamedAndRemoveUntil(
-              DASHBOARD_PAGE, ModalRoute.withName("/"));
+              //GO to dashboard and clear navigation stack
+              DASHBOARD_PAGE,
+              ModalRoute.withName("/"));
         }
       },
       builder: (context, state) {
@@ -140,6 +142,7 @@ class _LoginPage extends State<LoginPage> {
     );
   }
 
+  ///Perform form validation, then send form data for login
   void login() {
     if (this._formKey.currentState.validate()) {
       this._formKey.currentState.save();

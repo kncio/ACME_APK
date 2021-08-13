@@ -8,8 +8,9 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
 
   SplashScreenCubit({this.repository}) : super(SplashScreenInitialState());
 
+  //Emit the SplashScreenAnimationStartState for start the animation
   Future<void> start() async {
-    emit(SplashScreenAnimationStartState("Iniciando Animación"));
+    emit(SplashScreenAnimationStartState("Starting Animation"));
     var eitherValue = await repository.initializeApp();
 
     eitherValue.fold(
@@ -19,10 +20,5 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
       },
     );
   }
-
-  // Future<void> startAnimation()async {
-  //   emit(SplashScreenAnimationStartState("Iniciando Animación"));
-  // }
-
 
 }

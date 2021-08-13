@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:acme_test/injectorContainer.dart' as injectorContainer;
 
+///Material App using generated routes for navigation
 class ACMEApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,6 @@ class ACMEApp extends StatelessWidget {
       home: BlocProvider<SplashScreenCubit>(
         create: (_) => injectorContainer.sl<SplashScreenCubit>(),
         child: SplashScreenPage(),
-        //   home: ShopCartPage(),
       ),
       onGenerateRoute: (settings) {
         switch (settings.name) {

@@ -8,6 +8,7 @@ class DashboardPageCubit extends Cubit<DashboardPageState> {
 
   DashboardPageCubit({this.repository}) : super(LoginPageInitialState());
 
+  ///Handle the UI events and fetch data from the repository
   Future<void> getTickets() async {
     emit(DashboardPageLoadingState());
 
@@ -17,6 +18,11 @@ class DashboardPageCubit extends Cubit<DashboardPageState> {
         (l) => emit(DashboardPageErrorState(l.properties.first)),
         (ticketList) => ticketList != null
             ? emit(DashboardPageSuccessState(ticketList))
-            : emit(DashboardPageErrorState("Something gwent wrong!")));
+            : emit(DashboardPageErrorState("Something went wrong!")));
+  }
+
+  ///Emit the event indicating the user wants to create a ticket
+  Future<void> startCreateForm() async {
+    emit(DashboardPageCreateState());
   }
 }

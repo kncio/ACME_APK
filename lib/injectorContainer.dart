@@ -1,3 +1,4 @@
+import 'package:acme_test/appWidgets/newTicketForm.dart';
 import 'package:acme_test/dashboardPage/dashboardCubit.dart';
 import 'package:acme_test/dashboardPage/dashboardRepository.dart';
 import 'package:acme_test/dbApi/dbApi.dart';
@@ -21,7 +22,7 @@ import 'commons/stringsValues.dart';
 final sl = GetIt.instance;
 
 ///This file store at sl all the functional singleton classes and Factories that will be injected.
-/// init method must be called in app initialization
+///Init method must be called in app initialization
 Future<void> init() async {
   //region SplashScreen
   sl.registerFactory(() => SplashScreenCubit(repository: sl()));
@@ -44,7 +45,7 @@ Future<void> init() async {
   //region WorkTicket
   sl.registerFactory(() => WorkTicketPageCubit(repository: sl()));
 
-  sl.registerFactory(() => WorkTicketRepository());
+  sl.registerFactory(() => WorkTicketRepository(sl()));
   //endregion
 
   //region GetDirections
@@ -52,6 +53,9 @@ Future<void> init() async {
 
   sl.registerFactory(() => GetDirectionsPageRepository());
   //endregion
+
+  //NewTicket repo
+  sl.registerFactory(() => NewTicketRepository(sl()));
 
   var database = openDatabase(
     // Set the path to the database. Note: Using the `join` function from the
@@ -69,7 +73,7 @@ Future<void> init() async {
     // path to perform database upgrades and downgrades.
     version: 1,
   );
-  // var dbInstance = new DBApi(database = database);
-  // sl.registerSingleton(dbInstance,instanceName: "db_instance");
+
+  //Register a Singleton Database Api class instance
   sl.registerLazySingleton<DBApi>(() => DBApi(database = database));
 }

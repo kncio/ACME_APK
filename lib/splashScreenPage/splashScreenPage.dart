@@ -33,6 +33,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       if (state is SplashScreenAppInitializedSuccess) {
         Future.delayed(Duration(seconds: 3, milliseconds: 500)).whenComplete(
           () {
+            //When finish Animation Navigate to login page and clear the navigation stack
             Navigator.of(context).pushReplacementNamed(LOGIN_PAGE);
           },
         );
@@ -102,6 +103,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     );
   }
 
+  //Request Permission
   Future<Map<Permission, PermissionStatus>> requestPermissions() async {
     Map<Permission, PermissionStatus> status = await Settings.requestPermission(
         permissionsToRequest: [Permission.storage]);

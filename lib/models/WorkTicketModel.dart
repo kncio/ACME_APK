@@ -41,4 +41,17 @@ class WorkTicketModel {
       "ticketNumber": this.ticketNumber
     };
   }
+
+  factory WorkTicketModel.fromMap(Map<String, dynamic> map) => WorkTicketModel(
+        id: map["id"],
+        customerInfo: map["customerInfo"],
+        jobSiteAddress: map["jobSiteAddress"],
+        distance: map["distance"],
+        dispatchNote: map["dispatchNote"],
+        scheduledFor: map["scheduledFor"],
+        deptClass: map["deptClass"],
+        serviceType: map["serviceType"],
+        reasonForCall: map["reasonForCall"],
+        ticketNumber: map["ticketNumber"],
+      );
 }

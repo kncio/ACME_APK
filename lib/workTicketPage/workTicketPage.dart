@@ -9,7 +9,9 @@ import 'package:acme_test/appWidgets/roundedButton.dart';
 import 'package:acme_test/appWidgets/simpleNavigationMenu.dart';
 import 'package:acme_test/appWidgets/workTicketFooter.dart';
 import 'package:acme_test/commons/dimensionsValues.dart';
+import 'package:acme_test/commons/routesNames.dart';
 import 'package:acme_test/commons/stringsValues.dart';
+import 'package:acme_test/models/WorkTicketModel.dart';
 import 'package:acme_test/workTicketPage/workTicketCubit.dart';
 import 'package:acme_test/workTicketPage/workTicketState.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -17,6 +19,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+///Since this layout its made for demos, most of the data filled its static
+///Only Customer Name, Address and Scheduled time are setet when a ticket its created on Dashboard
 class WorkTicketPage extends StatefulWidget {
   final int ticketId;
 
@@ -29,86 +33,115 @@ class WorkTicketPage extends StatefulWidget {
 }
 
 class _WorkTicketPage extends State<WorkTicketPage> {
+  ///Ticket ID for show the selected ticket data,
+  ///If null, first database entry its show
   final int ticketId;
 
   _WorkTicketPage({this.ticketId});
 
   double _fontSize = 24;
   bool _smallScreen = false;
+  WorkTicketModel model;
+
+  @override
+  void initState() {
+    context.read<WorkTicketPageCubit>().getWorkTicketById(ticketId);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var mqH = MediaQuery.of(context).size.height / 24;
     _fontSize = (mqH < 24) ? mqH.abs() : 24;
     _smallScreen = (mqH < 24);
-    return BlocConsumer<WorkTicketPageCubit, WorkTicketPageState>(
-        listener: (context, state) async {},
-        builder: (context, state) {
-          return Scaffold(
-            appBar: buildAppBar(),
-            bottomNavigationBar: IntrinsicHeight(
-              child: WorkTicketFooter(),
-            ),
-            body: _buildBody(),
-          );
-        });
-  }
-
-  SingleChildScrollView _buildBody() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                _buildCustomerInfoWidget(),
-                Spacer(),
-                _buildScheduledInfoWidget()
-              ],
-            ),
-            Divider(
-              indent: 12,
-              endIndent: 12,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _directionsInfoWidget(),
-                Container(
-                  height: MediaQuery.of(context).size.height * 2 / 5 +
-                      _fontSize * 1.5,
-                  width: 1,
-                  color: Colors.black12,
-                ),
-                Column(
-                  children: [
-                    DispatchNoteWidget(
-                      noteText: "$text1String",
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 2, 0, 8),
-                      child: ServiceTypeAndDptClassWidget(
-                        dptClass: "Plumping",
-                        serviceType: "Call Back",
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height / 40,
-              color: Colors.grey,
-            ),
-            _buildReasonForCallDetails(),
-          ],
-        ),
+    return Scaffold(
+      appBar: buildAppBar(),
+      bottomNavigationBar: IntrinsicHeight(
+        child: WorkTicketFooter(),
       ),
+      body: _buildBody(),
     );
   }
 
-  //TODO: to implement dynamic data fill
+  Widget _buildBody() {
+    return BlocConsumer<WorkTicketPageCubit, WorkTicketPageState>(
+        listener: (context, state) async {},
+        builder: (context, state) {
+          switch (state.runtimeType) {
+            case WorkTicketPageSuccessState:
+              model = (state as WorkTicketPageSuccessState).model;
+              return SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          _buildCustomerInfoWidget(),
+                          Spacer(),
+                          _buildScheduledInfoWidget()
+                        ],
+                      ),
+                      Divider(
+                        indent: 12,
+                        endIndent: 12,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _directionsInfoWidget(),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 2 / 5 +
+                                _fontSize * 1.5,
+                            width: 1,
+                            color: Colors.black12,
+                          ),
+                          Column(
+                            children: [
+                              DispatchNoteWidget(
+                                noteText: model.dispatchNote,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 2, 0, 8),
+                                child: ServiceTypeAndDptClassWidget(
+                                  dptClass: model.deptClass,
+                                  serviceType: "Call Back",
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height / 40,
+                        color: Colors.grey,
+                      ),
+                      _buildReasonForCallDetails(),
+                    ],
+                  ),
+                ),
+              );
+            case WorkTicketPageErrorState:
+              return Container(
+                child: Center(
+                  child: Text((state as WorkTicketPageErrorState).message),
+                ),
+              );
+            default:
+              return Column(
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.black12,
+                    ),
+                  )
+                ],
+              );
+          }
+        });
+  }
+
+  //This widgets show data for demo only, in real world scenario data must be fetched from the model
   Widget _buildReasonForCallDetails() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 16, 0, 12),
@@ -148,7 +181,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
           Spacer(),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
-            child: Text("Ticket #32787",
+            child: Text("Ticket #$ticketId",
                 textAlign: TextAlign.start,
                 style: AcmeAppTheme.themeDataLight.textTheme.bodyText2.copyWith(
                     fontSize: _fontSize,
@@ -160,12 +193,15 @@ class _WorkTicketPage extends State<WorkTicketPage> {
     );
   }
 
+  ///Build the directions and address Information Layout
   Widget _directionsInfoWidget() {
     return Container(
       height: MediaQuery.of(context).size.height * 2 / 5,
       width: MediaQuery.of(context).size.width / 2 - 1,
       child: Padding(
-        padding: (_smallScreen)?defaultSmallWorkTicketTextPadding:defaultWorkTicketTextPadding,
+        padding: (_smallScreen)
+            ? defaultSmallWorkTicketTextPadding
+            : defaultWorkTicketTextPadding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -182,14 +218,18 @@ class _WorkTicketPage extends State<WorkTicketPage> {
                     padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
                     child: DistanceDetailsWidget(
                       time: "Approx. 17 Minutes",
-                      miles: "11.9 miles",
+                      miles: model.distance,
                     ),
                   ),
                 )
               ],
             ),
             Spacer(),
-            RoundedButton(label: "Get Directions", onPress: () {})
+            RoundedButton(
+                label: "Get Directions",
+                onPress: () {
+                  Navigator.of(context).pushNamed(GET_DIRECTIONS_PAGE);
+                })
           ],
         ),
       ),
@@ -197,7 +237,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
   }
 
   Widget _addressInfoWidget() {
-    //TODO: address info must be getted from dynamic data
+    //TODO: address info must be fetched from dynamic data using the ticket id in args
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
       child: AddressInfoWidget(
@@ -224,7 +264,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
           Row(
             children: [
               Text(
-                "Jessica Green",
+                model.customerInfo,
                 style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
                     .copyWith(color: Colors.black54, fontSize: _fontSize),
               ),
@@ -236,6 +276,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
                   color: Colors.green,
                 ),
               ),
+              //Static content for
               Text(
                 "519 733 8787",
                 style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
@@ -248,6 +289,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
     );
   }
 
+  ///Scheduled information Layout
   Widget _buildScheduledInfoWidget() {
     return Padding(
       padding: defaultWorkTicketTextPadding,
@@ -262,7 +304,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
                 fontSize: _fontSize),
           ),
           Text(
-            "Saturday, Dec 24, 2016 11:54 AM",
+            model.scheduledFor,
             style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
                 .copyWith(fontSize: _fontSize),
           )
@@ -308,7 +350,7 @@ class _WorkTicketPage extends State<WorkTicketPage> {
     ];
   }
 
-  ///Return the min between screenHeightSize/6 and 75
+  ///Return the min between screenHeightSize/6 and 75 for size the custom appbar
   double getPreferedSize() {
     return (MediaQuery.of(context).size.height / 6 > 75)
         ? 75

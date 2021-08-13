@@ -8,7 +8,9 @@ import 'package:acme_test/injectorContainer.dart' as injectorContainer;
 import 'package:flutter/services.dart';
 
 import 'models/WorkTicketModel.dart';
-
+/// ACME app
+/// Test for ISU Android Developers
+/// David Cancio Milián
 void main() {
   //region Prevent PortraitMode Mode
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,7 @@ void main() {
         runApp(ACMEApp())
       });
 }
-
+///Initialize the Instances Container for Inject
 Future<void> initialize() async {
   injectorContainer.init();
 }

@@ -8,9 +8,9 @@ abstract class SplashScreenState extends Equatable {
 class SplashScreenInitialState extends SplashScreenState {}
 
 class SplashScreenAnimationStartState extends SplashScreenState {
-  final String Message;
+  final String message;
 
-  SplashScreenAnimationStartState(this.Message);
+  SplashScreenAnimationStartState(this.message);
 }
 
 class SplashScreenAppInitializedSuccess extends SplashScreenState {}

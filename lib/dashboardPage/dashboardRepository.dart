@@ -12,15 +12,14 @@ class DashboardPageRepository {
 
   DashboardPageRepository({this.database});
 
+  /// Tickets list from the database and prepare for the View
   Future<Either<Failure, List<ListTileTicketModel>>> loadStoredTickets() async {
     try {
-
       var result = await database.getTickets();
-      log(result.length.toString() + result[0].id.toString());
+
       return Right(result);
     } catch (e) {
       return Left(Failure([e.toString()]));
     }
   }
-
 }

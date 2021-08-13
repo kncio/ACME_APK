@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:acme_test/commons/stringsValues.dart';
 import 'package:acme_test/models/ListTileTicketModel.dart';
@@ -9,8 +10,9 @@ import 'package:sqflite/sqflite.dart';
 
 class DBApi {
   final database;
+  final String columnId = "id";
 
-  DBApi(this.database){
+  DBApi(this.database) {
     ///Fill the database with data for test visualization
     var newTicket = WorkTicketModel(
         id: 123,
@@ -18,7 +20,7 @@ class DBApi {
         jobSiteAddress: "AN Address|A Location, ON|ACO DE9",
         distance: "11.8 miles",
         dispatchNote: text1String,
-        scheduledFor: "Saturday, Dec 30, 2017 11:00 AM",
+        scheduledFor: "11:00/8/6/2021",
         deptClass: "Plumping",
         serviceType: "Call Back",
         reasonForCall: "Lorep ipsum",
@@ -50,7 +52,7 @@ class DBApi {
     // Query the table for all The Dogs.
     final List<Map<String, dynamic>> maps = await db.query('tickets');
 
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
+    // Convert the List<Map<String, dynamic> into a List<TicketModel>.
     var ticketModels = List.generate(maps.length, (i) {
       return WorkTicketModel(
           id: maps[i]["id"],
@@ -64,9 +66,33 @@ class DBApi {
           reasonForCall: maps[i]["reasonForCall"],
           ticketNumber: maps[i]["ticketNumber"]);
     });
-
     return List.generate(ticketModels.length, (i) {
       return ListTileTicketModel.fromWorkTicketModel(ticketModels[i]);
     });
+  }
+
+  //Get a WorkTicketModel by id
+  Future<WorkTicketModel> getWorkTicketModel(int id) async {
+
+    var db = await database;
+    List<Map> maps = await db.query('tickets',
+        columns: [
+          "id",
+          "customerInfo",
+          "jobSiteAddress",
+          "distance",
+          "dispatchNote",
+          "scheduledFor",
+          "deptClass",
+          "serviceType",
+          "reasonForCall",
+          "ticketNumber"
+        ],
+        where: '$columnId = ?',
+        whereArgs: [id]);
+    if (maps.length > 0) {
+      return WorkTicketModel.fromMap(maps.first);
+    }
+    return null;
   }
 }
