@@ -1,16 +1,17 @@
 # acme_test
 
-A new Flutter application.
+Flutter Application for ISU Corp test.
+The application was coded using BLoC/Cubit/Repository pattern and dependence injection.
 
-## Getting Started
+## Importatn Note:
+For the test porpouse Google Maps Api key its exposed.Once the results are done, will be revoked.
 
-This project is a starting point for a Flutter application.
+## Flutter version:
+Flutter 2.0.3 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 4d7946a68d (5 months ago) • 2021-03-18 17:24:33 -0700
+Engine • revision 3459eb2436
+Tools • Dart 2.12.2
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to build
+run: flutter build apk // on root directory
