@@ -1,6 +1,7 @@
 import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/AppBarIcon.dart';
 import 'package:acme_test/appWidgets/mapWidget.dart';
+import 'package:acme_test/appWidgets/placeInfoLayoutWidget.dart';
 import 'package:acme_test/appWidgets/workTicketFooter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 1 / 4,
+              child: PlaceInfoLayoutWidget(),
             ),
             Container(
                 width: MediaQuery.of(context).size.width * 3 / 4,
@@ -35,7 +37,7 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
     return PreferredSize(
       preferredSize: Size.fromHeight(getPreferedSize()),
       child: AppBar(
-        elevation: 1,
+        elevation: 0.2,
         leadingWidth: MediaQuery.of(context).size.width / 5,
         leading: _buildLeading(),
         centerTitle: true,
