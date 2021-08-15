@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/labelWithIcon.dart';
+import 'package:acme_test/autoCompleteBloc/AutoCompleteBloc.dart';
 import 'package:acme_test/commons/dimensionsValues.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'package:transparent_image/transparent_image.dart';
 
@@ -22,6 +24,7 @@ class PlaceInfoLayoutWidget extends StatefulWidget {
 class _PlaceInfoLayoutWidget extends State<PlaceInfoLayoutWidget> {
   final String address;
 
+  List<String> _searchResults = [];
   String _street = "27 Brookview Dr";
   String _location = "North York, ON M6A 2K4";
 
@@ -153,13 +156,17 @@ class _PlaceInfoLayoutWidget extends State<PlaceInfoLayoutWidget> {
 
   IntrinsicHeight _buildHeader() => IntrinsicHeight(
           child: Stack(
-        children: [_buildImageAndImageFooter(), _buildFloatingButton()],
+        children: [
+          _buildImageAndImageFooter(),
+          _buildSearchField(),
+          _buildFloatingButton()
+        ],
       ));
 
   Widget _buildFloatingButton() {
     return Positioned(
       top: MediaQuery.of(context).size.height * 3 / 10 - 35,
-      left: MediaQuery.of(context).size.width * 1 / 4 - 60,
+      left: MediaQuery.of(context).size.width * 2 / 6 - 60,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Wrap(
@@ -214,6 +221,45 @@ class _PlaceInfoLayoutWidget extends State<PlaceInfoLayoutWidget> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildSearchField() {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Container(
+        height: 50,
+        color: Colors.white,
+        child: Column(
+          children: [
+            TextField(
+              textAlignVertical: TextAlignVertical.center,
+              style: AcmeAppTheme.themeDataLight.textTheme.bodyText1,
+              decoration: InputDecoration(
+                  hintText: "Search Location",
+                  prefixIcon: Icon(
+                    Icons.menu,
+                    color: Colors.black54,
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.black12,
+                    ),
+                    onPressed: () {
+                      primaryFocus.unfocus();
+                    },
+                  )),
+              onChanged: (value) {
+                setState(() {
+
+                });
+              },
+            ),
+
+          ],
+        ),
       ),
     );
   }

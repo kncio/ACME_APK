@@ -18,7 +18,7 @@ class WorkTicketFooter extends StatelessWidget {
         children: [
           FooterButton(
             label: Text(
-              "Overvew",
+              "Overview",
               style: AcmeAppTheme.themeDataLight.textTheme.bodyText2
                   .copyWith(color: Colors.green, fontSize: _fontSize),
             ),

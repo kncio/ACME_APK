@@ -23,11 +23,11 @@ class _GetDirectionsPage extends State<GetDirectionsPage> {
         body: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 1 / 4,
+              width: MediaQuery.of(context).size.width * 2 / 6,
               child: PlaceInfoLayoutWidget(),
             ),
             Container(
-                width: MediaQuery.of(context).size.width * 3 / 4,
+                width: MediaQuery.of(context).size.width * 4 / 6,
                 child: GMap()),
           ],
         ));
