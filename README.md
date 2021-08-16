@@ -3,6 +3,10 @@
 Flutter Application for ISU Corp test.
 The application was coded using BLoC/Cubit/Repository pattern and dependence injection.
 
+## Credentials
+username: acme
+password: test
+
 ## Importatn Note:
 For the test porpouse Google Maps Api key its exposed.Once the results are done, will be revoked.
 
