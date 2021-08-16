@@ -3,6 +3,8 @@
 Flutter Application for ISU Corp test.
 The application was coded using BLoC/Cubit/Repository pattern and dependence injection.
 
+Optimized for 10 inch tablets(can be rezized to 6 inc standard smartphones landscape only)
+
 ## Credentials
 username: acme
 password: test
