@@ -1,3 +1,6 @@
+//Google Maps api key
+const String g_key = "AIzaSyDD0L5j6Z_ToXMSgLmMpu2dQdpcexLH1wA";
+
 //Database Name string
 const String dbName = "acmeDB.db";
 //Create string for database

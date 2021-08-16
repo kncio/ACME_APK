@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:acme_test/appTheme/acmeTheme.dart';
 import 'package:acme_test/appWidgets/roundedButton.dart';
 import 'package:acme_test/commons/routesNames.dart';
@@ -24,15 +26,26 @@ class _LoginPage extends State<LoginPage> {
   String _userName = "";
   String _password = "";
 
+  bool _invalidCredentials = false;
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginPageCubit, LoginPageState>(
       listener: (context, state) async {
         if (state is LoginPageSuccessState) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              //GO to dashboard and clear navigation stack
-              DASHBOARD_PAGE,
-              ModalRoute.withName("/"));
+          if (state.validUser) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                //GO to dashboard and clear navigation stack
+                DASHBOARD_PAGE,
+                ModalRoute.withName("/"));
+          } else {
+            log("shit");
+            setState(() {
+              _invalidCredentials = true;
+              _formKey.currentState.reset();
+              _formKey.currentState.validate();
+            });
+          }
         }
       },
       builder: (context, state) {
@@ -58,6 +71,16 @@ class _LoginPage extends State<LoginPage> {
                     "assets/app_logo.png",
                     fit: BoxFit.cover,
                   )),
+              (_invalidCredentials)
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Username or Password are incorrect !",
+                        style: AcmeAppTheme.themeDataLight.textTheme.bodyText1
+                            .copyWith(color: Colors.red),
+                      ),
+                    )
+                  : SizedBox.shrink(),
               Form(
                 key: _formKey,
                 child: Container(

@@ -16,8 +16,8 @@ class LoginPageCubit extends Cubit<LoginPageState> {
 
     eitherValue.fold(
       (failure) => emit(LoginPageErrorState(failure.properties.first)),
-      (credentials) => credentials
-          ? emit(LoginPageSuccessState())
+      (credentials) => credentials != null
+          ? emit(LoginPageSuccessState(credentials))
           : LoginPageErrorState("$loginErrorString"),
     );
   }

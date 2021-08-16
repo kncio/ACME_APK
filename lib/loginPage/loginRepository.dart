@@ -6,7 +6,11 @@ class LoginPageRepository {
   Future<Either<Failure, bool>> login(LoginData loginData) async {
     try {
       ///TODO: implement login repository logic send data to the server...
-      return Right(true);
+
+      if (loginData.userName == "acme" && loginData.password == "test") {
+        return Right(true);
+      }
+      return Right(false);
     } on Exception catch (error) {
       return Left(Failure([error.toString()]));
     }

@@ -15,4 +15,8 @@ class LoginPageErrorState extends LoginPageState {
   LoginPageErrorState(this.message);
 }
 
-class LoginPageSuccessState extends LoginPageState {}
+class LoginPageSuccessState extends LoginPageState {
+ final  bool validUser;
+
+  LoginPageSuccessState(this.validUser);
+}
