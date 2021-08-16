@@ -22,3 +22,10 @@ run: flutter build apk // on root directory
 
 ## Screenshots
 ![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629077884.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078023.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078035.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078048.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078064.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078088.png?raw=true)
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629078103.png?raw=true)
+
