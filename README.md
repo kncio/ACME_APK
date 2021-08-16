@@ -7,8 +7,8 @@ The application was coded using BLoC/Cubit/Repository pattern and dependence inj
 username: acme
 password: test
 
-## Importatn Note:
-For the test porpouse Google Maps Api key its exposed.Once the results are done, will be revoked.
+## Important Note:
+For the test purpose Google Maps Api key its exposed.Once the results are done, will be revoked.
 
 ## Flutter version:
 Flutter 2.0.3 • channel stable • https://github.com/flutter/flutter.git
