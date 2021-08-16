@@ -19,3 +19,6 @@ Tools • Dart 2.12.2
 
 ## How to build
 run: flutter build apk // on root directory
+
+## Screenshots
+![alt text](https://github.com/kncio/ACME_APK/blob/master/assets/screenshots/10IncTablet1629077884.png?raw=true)
